@@ -1,0 +1,22 @@
+#!/bin/bash
+
+op=$(echo $1 | cut -d ' ' -f 2)
+number1=$(echo $1 | cut -d ' ' -f 1)
+number2=$(echo $1 | cut -d ' ' -f 3)
+
+function do_op {
+    ./do_op $number1 $op $number2
+}
+
+function test_do_op {
+    result=$(do_op | rev | cut -d ' ' -f 1)
+    echo "result: $result"
+    expected_result=$(echo "$number1 $op $number2" | bc)
+    if [ $result -eq $expected_result ]; then
+        echo "OK"
+    else
+        echo "expected: $expected_result"
+    fi
+}
+test_do_op
+
