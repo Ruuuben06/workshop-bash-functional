@@ -3,7 +3,9 @@
 op=$(echo $1 | cut -d ' ' -f 2)
 number1=$(echo $1 | cut -d ' ' -f 1)
 number2=$(echo $1 | cut -d ' ' -f 3)
-total=$((number1 $op number2))
 
-# display the result
-echo "The result of the do-op is $total"
+function do_op {
+    ./do-op $number1 $op $number2
+}
+
+do_op
